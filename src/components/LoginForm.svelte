@@ -86,9 +86,9 @@
 
 </script>
 
+    <h1 class="toUpperCase">Member Login</h1>
 
 	<form on:submit|preventDefault={checkCredentials}>
-        <h1>Member Login</h1>
 	
 		<input 
             autocomplete="on"  
@@ -101,7 +101,7 @@
             >
 
         {#if emailError}
-            <div>{emailError}</div>
+            <div class="error-text">{emailError}</div>
         {/if}
 
 
@@ -118,7 +118,7 @@
             >
 
          {#if passwordError}
-            <div>{passwordError}</div>
+            <div class="error-text">{passwordError}</div>
         {/if}
 
 
@@ -134,6 +134,31 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        height: 80%;
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 1rem;
+    }
+
+    .error-text {
+        color: red;
+        text-align: center;
+        font-size: 0.5rem;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 5px;
     }
     
+   input:focus {
+    outline: none;
+    border:2px solid #32B0A2;
+}
     </style>
