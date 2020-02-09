@@ -3,7 +3,7 @@
   
 
     let email;
-	let password;
+	let password = '';
 	let typingTimer;                //timer identifier
 	let finishedTypingInterval = 3000;  //time in ms (3 seconds)
     let emailInputRef;	// for .focus() onMount and if validation fails
@@ -11,8 +11,12 @@
     let emailError;
     let passwordError;
     let valid = true;
+    let userEmail = 'test+1234@exmaple.net'
+    let userPassword = 'Test1234!'
     
-    const emailRegex = RegExp( /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/ )     // email regex test
+        
+    const emailRegex = RegExp( /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ )     // email regex test
+    // const emailRegex = RegExp( /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/ )   
     const passwordRegex = RegExp( /^.{9,}$/ )
 
     // remove error message if field empty
@@ -46,6 +50,7 @@
         } else {
             console.log('email passed')
             emailError = ''
+            passwordInputRef.focus() 
         }
         
 	}
@@ -55,31 +60,54 @@
             console.log('password failed')
             passwordInputRef.focus() 	// refocus on email input if validation failed
             passwordError = 'Please enter a valid password - must be more than 8 characters'
-        } else {
+            valid = true;
+        } else if (passwordRegex.test(password)){
             console.log('password passed')
             passwordError = ''
             valid = false;
         }
-        
-	}
+    }
+    
+    const checkCredentials = (email, password) => {
+        if (email === userEmail && password === userPassword) {
+            console.log('login successful')
+        } else {
+            console.log('user not found')
+        }
+    }
 
 </script>
 
 
 
-	<form>
+	<form on:submit|preventDefault={checkCredentials}>
 	
-		<input bind:this={emailInputRef} on:blur={() => checkEmail(email)} on:keyup={typeTimer} bind:value={email} placeholder="enter email" type='email'>
+		<input 
+            bind:this={emailInputRef} 
+            on:blur={() => checkEmail(email)} 
+            on:keyup={typeTimer} 
+            bind:value={email} 
+            placeholder="enter email" 
+            type='email'>
+
         {#if emailError}
             <div>{emailError}</div>
         {/if}
 
-		<input bind:this={passwordInputRef} autocomplete="off"  on:focusout={() => checkPassword(password)} on:keyup={typeTimer} bind:value={password} placeholder="enter password" type='password'>
+		<input 
+            bind:this={passwordInputRef} 
+            autocomplete="off"  
+            on:blur={() => checkPassword(password)} 
+            on:keyup={typeTimer} 
+            bind:value={password} 
+            placeholder="enter password" 
+            type='password'>
+            
          {#if passwordError}
             <div>{passwordError}</div>
         {/if}
 
-        <button on:click|preventDefault={() => console.log('login successful')} disabled={valid}>Login</button>
+        <button on:click|preventDefault={checkCredentials} disabled={valid}>Login</button>
 
 	
 	</form>
