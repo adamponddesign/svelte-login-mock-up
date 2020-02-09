@@ -18,23 +18,26 @@
 
 <main>
 
-{#if navVariable === 'login-form'}
-	<div  class='form-container'>
-		<div class='form-column left'>
-			<img id="avatar" src="images/avatar-icon.svg" alt="generic avatar icon">
-		
-		</div>
-		<div class='form-column right'>
-			<LoginForm on:success={updateProgressStatus}/>
-		</div>	
-	</div>
-{:else}
-	<div class='form-container success toUpperCase'>
-		<img id="success-tick" src="images/success-tick.svg" alt="green tick image">
-		Logged In!
-	</div>
+	{#if navVariable === 'login-form'}
 
-{/if}
+		<div  class='form-container'>
+			<div class='form-column left'>
+				<img id="avatar" src="images/avatar-icon.svg" alt="generic avatar icon">
+			</div>
+			<div class='form-column right'>
+				<LoginForm on:success={updateProgressStatus}/>
+			</div>	
+		</div>
+
+	{:else}
+
+		<div class='form-container success toUpperCase'>
+			<img id="success-tick" src="images/success-tick.svg" alt="green tick image">
+			Logged In!
+		</div>
+
+	{/if}
+
 </main>
 
 

@@ -1,7 +1,6 @@
 <script>
     import { onMount } from 'svelte';
     import { createEventDispatcher } from 'svelte';
-    import { fade } from 'svelte/transition';
 
 	const dispatch = createEventDispatcher();
 
@@ -35,30 +34,30 @@
     });
 
 
+    // detects when a user has stopped typing
 	const typeTimer = (event) => {
 		clearTimeout(typingTimer); 	//reset the timer on keyup
         if (email && !password) {		// if email exists
+            // handle if user hits enter
             if (event.keyCode === 13) {
                 checkEmail(email)
             }
 			typingTimer = setTimeout(() => checkEmail(email), finishedTypingInterval);	// run the 'checkEmail' function after the 'finishedTypingInterval' amount of time
         }
         if (password) {
+            // handle if user hits enter
             if (event.keyCode === 13) {
                 checkPassword(password)
             }
             typingTimer = setTimeout(() => checkPassword(password), finishedTypingInterval);	// run the 'checkEmail' function after the 'finishedTypingInterval' amount of time
         }
-
-	}
+    }
+    
 	const checkEmail = (email) => {
-        console.log('checking email')
 	    if (!emailRegex.test(email)) {
-            console.log('email failed')
             emailInputRef.focus() 	// refocus on email input if validation failed
             emailError = 'Please enter a valid email address'
         } else {
-            console.log('email passed')
             emailError = ''
             passwordInputRef.focus() 
         }
@@ -67,27 +66,22 @@
 	const checkPassword = (password) => {
         console.log('checking password')
 	    if (!passwordRegex.test(password)) {
-            console.log('password failed')
-            passwordInputRef.focus() 	// refocus on email input if validation failed
+            passwordInputRef.focus() 	// refocus on password input if validation failed
             passwordError = 'Please enter a valid password - must be more than 8 characters'
             valid = true;
         } else if (passwordRegex.test(password)){
-            console.log('password passed')
             passwordError = ''
             valid = false;
         }
     }
     
     const checkCredentials = () => {
-        console.log('submit')
-
         if (email === userEmail && password === userPassword) {
-            console.log('login successful')
+            // dispatch success keyword to app.svelte to change the display to success screen
             dispatch('success');
         } else {
             emailInputRef.focus() 
             unknownUser = 'User not found please re-enter correct details'
-            console.log('user not found')
         }
     }
 
@@ -95,9 +89,7 @@
 
     <h1 class="toUpperCase">Member Login</h1>
     
-    
-
-	<form  transition:fade  on:submit|preventDefault={checkCredentials}>
+	<form on:submit|preventDefault={checkCredentials}>
         
         <input  
             class:error="{emailError}"
@@ -108,16 +100,10 @@
             bind:value={email} 
             placeholder='enter email'
             type='email'
-        >
-            
-        
-        
-
+        >  
         {#if emailError}
             <div class="error-text">{emailError}</div>
         {/if}
-
-
 
         <input 
             class:error="{passwordError}"
@@ -129,11 +115,7 @@
             placeholder="enter password" 
             type='password'
         >
-        
-
-
-
-         {#if passwordError}
+        {#if passwordError}
             <div class="error-text">{passwordError}</div>
         {/if}
 
@@ -190,13 +172,10 @@
         cursor: not-allowed;
     }
 
-  
-    
     input:focus {
         outline: none;
         border:1px solid #32B0A2;
     }
-
 
      input:focus.error {
         outline: none;
@@ -209,5 +188,4 @@
         font-size: 0.75rem;
     }
 
-   
 </style>
