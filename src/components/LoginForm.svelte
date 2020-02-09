@@ -138,12 +138,12 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 45%;
         width: 100%;
     }
 
     h1 {
         font-size: 1.2rem;
+        margin-bottom: 1rem;
     }
 
     
@@ -192,4 +192,40 @@
         font-size: 0.85rem;
     }
 
+
+    /* Media Queries ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+    /* Small devices (landscape phones, 576px and up) */
+    @media (min-width: 300px) { 
+        h1 {
+            font-size: 1rem;
+        }
+
+        input {
+            font-size: 0.75rem;
+        }
+    }
+
+    /* Medium devices (tablets, 768px and up) */
+    @media (min-width: 768px) { 
+        h1 {
+            font-size: 1.2rem;
+        }
+
+        input {
+            font-size: 0.8rem;
+        }
+    }
+
+    /* Large devices (desktops, 992px and up) */
+    @media (min-width: 992px) {
+        input {
+            font-size: 0.9rem;
+        }
+    }
+
+    /* Extra large devices (large desktops, 1200px and up) */
+    @media (min-width: 1200px) {
+
+    }
 </style>

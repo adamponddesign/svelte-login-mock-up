@@ -108,5 +108,33 @@
 	}
 
 
+	/* Media Queries ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+	
+	/* Small devices (landscape phones, 576px and up) */
+	@media (min-width: 300px) { 
+		.form-container {
+			width: 90vw;	
+		}
+	}
+
+	/* Medium devices (tablets, 768px and up) */
+	@media (min-width: 768px) { 
+		.form-container {
+			width: 70vw;	
+		}
+	}
+
+	/* Large devices (desktops, 992px and up) */
+	@media (min-width: 992px) {
+		.form-container {
+			width: 50vw;	
+		}
+	}
+
+	/* Extra large devices (large desktops, 1200px and up) */
+	@media (min-width: 1200px) {
+
+	}
+
 </style>
 
