@@ -36,6 +36,7 @@
 
     // detects when a user has stopped typing
 	const typeTimer = (event) => {
+        unknownUser = false
 		clearTimeout(typingTimer); 	//reset the timer on keyup
         if (email && !password) {		// if email exists
             // handle if user hits enter
@@ -54,6 +55,7 @@
     }
     
 	const checkEmail = (email) => {
+        unknownUser = false
 	    if (!emailRegex.test(email)) {
             emailInputRef.focus() 	// refocus on email input if validation failed
             emailError = 'Please enter a valid email address'
@@ -64,7 +66,7 @@
         
 	}
 	const checkPassword = (password) => {
-        console.log('checking password')
+        unknownUser = false
 	    if (!passwordRegex.test(password)) {
             passwordInputRef.focus() 	// refocus on password input if validation failed
             passwordError = 'Please enter a valid password - must be more than 8 characters'
