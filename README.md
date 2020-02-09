@@ -14,6 +14,7 @@ Only when user has entered a valid email and password greater than 8 characters 
 hardcoded login details to gain successful log in are
 
 email : test+1234@example.net
-Password: Test1234!
+
+Password : Test1234!
 
 
