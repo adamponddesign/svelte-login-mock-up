@@ -14,14 +14,12 @@
     let userEmail = 'test+1234@example.net'
     let userPassword = 'Test1234!'
 
-    $: console.log(email, password)
     
-        
-    const emailRegex = RegExp( /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ )     // email regex test
-    // const emailRegex = RegExp( /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/ )   
+     // email/password regex tests
+    const emailRegex = RegExp( /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ )
     const passwordRegex = RegExp( /^.{9,}$/ )
 
-    // remove error message if field empty
+    // remove error messages if fields empty
     $: if (!email || !password) {
         emailError = '';
         passwordError = '';
@@ -33,12 +31,18 @@
     });
 
 
-	const typeTimer = () => {
+	const typeTimer = (event) => {
 		clearTimeout(typingTimer); 	//reset the timer on keyup
-		if (email && !password) {		// if email exists
+        if (email && !password) {		// if email exists
+            if (event.keyCode === 13) {
+                checkEmail(email)
+            }
 			typingTimer = setTimeout(() => checkEmail(email), finishedTypingInterval);	// run the 'checkEmail' function after the 'finishedTypingInterval' amount of time
         }
         if (password) {
+            if (event.keyCode === 13) {
+                checkPassword(password)
+            }
             typingTimer = setTimeout(() => checkPassword(password), finishedTypingInterval);	// run the 'checkEmail' function after the 'finishedTypingInterval' amount of time
         }
 
@@ -71,7 +75,7 @@
     }
     
     const checkCredentials = () => {
-     
+        console.log('submit')
 
         if (email === userEmail && password === userPassword) {
             console.log('login successful')
@@ -83,20 +87,25 @@
 </script>
 
 
-
 	<form on:submit|preventDefault={checkCredentials}>
+        <h1>Member Login</h1>
 	
 		<input 
+            autocomplete="on"  
             bind:this={emailInputRef} 
             on:blur={() => checkEmail(email)} 
-            on:keyup={typeTimer} 
+            on:keyup={typeTimer}
             bind:value={email} 
             placeholder="enter email" 
-            type='email'>
+            type='email'
+            >
 
         {#if emailError}
             <div>{emailError}</div>
         {/if}
+
+
+
 
 		<input 
             bind:this={passwordInputRef} 
@@ -105,13 +114,26 @@
             on:keyup={typeTimer} 
             bind:value={password} 
             placeholder="enter password" 
-            type='password'>
+            type='password'
+            >
 
          {#if passwordError}
             <div>{passwordError}</div>
         {/if}
 
-        <button disabled={valid}>Login</button>
 
+        <button disabled={valid}>Login</button>
 	
 	</form>
+
+
+    <style>
+    
+    form {
+        display: flex;  
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    </style>
