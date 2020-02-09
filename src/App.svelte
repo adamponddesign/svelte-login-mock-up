@@ -28,13 +28,7 @@
 </header>
 
 <main>
-
-
-
-
-
 	<div class='form-container'>
-
 		<div class='form-column left'>
 			<svg id="avatar" style="enable-background:new 0 0 48 48;" version="1.1" viewBox="0 0 48 48" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 				<g class="st0" id="Padding__x26__Artboard"/>
@@ -48,14 +42,10 @@
 					</g></g></g></svg>
 		
 		</div>
-
 		<div class='form-column right'>
 			<LoginForm />
-		</div>
-	
-	
+		</div>	
 	</div>
-	
 </main>
 
 
@@ -64,6 +54,9 @@
 	header {
 		height: 4rem;
 		background: rgba(6, 160, 146, 0.5);
+		-webkit-box-shadow: 9px 9px 15px -8px rgba(166,151,166,0.38);
+		-moz-box-shadow: 9px 9px 15px -8px rgba(166,151,166,0.38);
+		box-shadow: 9px 9px 15px -8px rgba(166,151,166,0.38);
 	}
 
 
@@ -99,6 +92,10 @@
 		background-color: #f5f5f5;
 		width: 50vw;
 		height: 60vh;
+		border-radius: 10px;
+		-webkit-box-shadow: 9px 9px 15px -8px rgba(166,151,166,0.38);
+		-moz-box-shadow: 9px 9px 15px -8px rgba(166,151,166,0.38);
+		box-shadow: 9px 9px 15px -8px rgba(166,151,166,0.38);
 	}
 
 	.form-column {

@@ -1,6 +1,6 @@
 <script>
     import { onMount } from 'svelte';
-  
+
 
     let email;
 	let password = '';
@@ -87,18 +87,24 @@
 </script>
 
     <h1 class="toUpperCase">Member Login</h1>
+    
+    
 
-	<form on:submit|preventDefault={checkCredentials}>
-	
-		<input 
+	<form  on:submit|preventDefault={checkCredentials}>
+        
+        <input  
+            class:error="{emailError}"
             autocomplete="on"  
             bind:this={emailInputRef} 
             on:blur={() => checkEmail(email)} 
             on:keyup={typeTimer}
             bind:value={email} 
-            placeholder="enter email" 
+            placeholder='enter email'
             type='email'
-            >
+        >
+            
+        
+        
 
         {#if emailError}
             <div class="error-text">{emailError}</div>
@@ -106,8 +112,8 @@
 
 
 
-
-		<input 
+        <input 
+            class:error="{passwordError}"
             bind:this={passwordInputRef} 
             autocomplete="off"  
             on:blur={() => checkPassword(password)} 
@@ -115,7 +121,10 @@
             bind:value={password} 
             placeholder="enter password" 
             type='password'
-            >
+        >
+        
+
+
 
          {#if passwordError}
             <div class="error-text">{passwordError}</div>
@@ -134,7 +143,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 80%;
+        height: 60%;
         width: 100%;
     }
 
@@ -142,23 +151,52 @@
         font-size: 1rem;
     }
 
+    
+    input {
+        text-transform: uppercase;
+        width: 100%;
+        margin: 0.3rem 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding:0.5rem;
+    }
+
+    button {
+        text-transform: uppercase;
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+   
+    button:disabled {
+        background-color: rgb(97, 97, 97);
+        color: grey;
+        cursor: not-allowed;
+    }
+
+  
+    
+    input:focus {
+        outline: none;
+        border:1px solid #32B0A2;
+    }
+
+
+     input:focus.error {
+        outline: none;
+        border: 1px solid red;
+    }
+
     .error-text {
         color: red;
         text-align: center;
-        font-size: 0.5rem;
+        font-size: 0.75rem;
     }
 
-    input {
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-    
-   input:focus {
-    outline: none;
-    border:2px solid #32B0A2;
-}
+   
     </style>
