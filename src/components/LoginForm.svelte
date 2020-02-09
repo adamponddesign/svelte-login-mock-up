@@ -1,17 +1,19 @@
 <script>
     import { onMount } from 'svelte';
     import { createEventDispatcher } from 'svelte';
+    import { fade } from 'svelte/transition';
 
 	const dispatch = createEventDispatcher();
 
     let email;
 	let password = '';
 	let typingTimer;                //timer identifier
-	let finishedTypingInterval = 3000;  //time in ms (3 seconds)
+	let finishedTypingInterval = 1500;  //time in ms (1.5 seconds)
     let emailInputRef;	// for .focus() onMount and if validation fails
     let passwordInputRef;
     let emailError;
     let passwordError;
+    let unknownUser = false;
     let valid = true;
     let userEmail = 'test+1234@example.net'
     let userPassword = 'Test1234!'
@@ -83,6 +85,8 @@
             console.log('login successful')
             dispatch('success');
         } else {
+            emailInputRef.focus() 
+            unknownUser = 'User not found please re-enter correct details'
             console.log('user not found')
         }
     }
@@ -93,7 +97,7 @@
     
     
 
-	<form  on:submit|preventDefault={checkCredentials}>
+	<form  transition:fade  on:submit|preventDefault={checkCredentials}>
         
         <input  
             class:error="{emailError}"
@@ -135,6 +139,10 @@
 
 
         <button disabled={valid}>Login</button>
+
+        {#if unknownUser}
+            <div class="error-text">{unknownUser}</div>
+        {/if}
 	
 	</form>
 

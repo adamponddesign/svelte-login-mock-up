@@ -10,15 +10,16 @@
 </script>
 
 
+
+
 <header>
 	<img id="beyonk-logo" src="images/beyonk-logo.svg" alt="beyonk logo">
-
 </header>
 
 <main>
 
 {#if navVariable === 'login-form'}
-	<div class='form-container'>
+	<div  class='form-container'>
 		<div class='form-column left'>
 			<img id="avatar" src="images/avatar-icon.svg" alt="generic avatar icon">
 		
@@ -55,8 +56,6 @@
 		height: calc(100vh - 4rem);
 	}
 	
-
-	/* avatar icon */
 	#avatar {
 		fill:none;
 		stroke:#303030;
@@ -66,8 +65,6 @@
 		stroke-miterlimit:10;
 	}
 
-	
-	/* beyonk logo in header */
 	#beyonk-logo {
 		width: 104px;
 		fill: #000;
@@ -84,8 +81,8 @@
 	.form-container {
 		display: flex;
 		background-color: #f5f5f5;
-		width: 50vw;
-		height: 60vh;
+		width: 50vw;		/* 50% of screen width as per brief*/
+		height: 60vh;		/* 60% of screen height as per brief*/
 		border-radius: 10px;
 		-webkit-box-shadow: 9px 9px 15px -8px rgba(166,151,166,0.38);
 		-moz-box-shadow: 9px 9px 15px -8px rgba(166,151,166,0.38);
