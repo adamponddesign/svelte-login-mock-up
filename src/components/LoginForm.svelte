@@ -1,6 +1,8 @@
 <script>
     import { onMount } from 'svelte';
+    import { createEventDispatcher } from 'svelte';
 
+	const dispatch = createEventDispatcher();
 
     let email;
 	let password = '';
@@ -79,6 +81,7 @@
 
         if (email === userEmail && password === userPassword) {
             console.log('login successful')
+            dispatch('success');
         } else {
             console.log('user not found')
         }
@@ -136,14 +139,14 @@
 	</form>
 
 
-    <style>
+<style>
     
     form {
         display: flex;  
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 60%;
+        height: 45%;
         width: 100%;
     }
 
@@ -155,7 +158,7 @@
     input {
         text-transform: uppercase;
         width: 100%;
-        margin: 0.3rem 0;
+        margin: 0.5rem 0;
         border: 1px solid #ccc;
         border-radius: 5px;
         padding:0.5rem;
@@ -199,4 +202,4 @@
     }
 
    
-    </style>
+</style>
