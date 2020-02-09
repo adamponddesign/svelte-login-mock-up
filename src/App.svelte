@@ -44,7 +44,7 @@
 
 <style>
 	header {
-		height: 4rem;
+		height: 5rem;
 		background: #32B0A2;
 		-webkit-box-shadow: 9px 9px 15px -8px rgba(166,151,166,0.38);
 		-moz-box-shadow: 9px 9px 15px -8px rgba(166,151,166,0.38);
@@ -56,7 +56,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		height: calc(100vh - 4rem);
+		height: calc(100vh - 5rem);
 	}
 	
 	#avatar {
@@ -69,9 +69,9 @@
 	}
 
 	#beyonk-logo {
-		width: 104px;
+		width: 150px;
 		fill: #000;
-		padding: 0.85rem;
+		padding: 0.5rem;
 	}
 
 	#success-tick {

@@ -141,7 +141,7 @@
     }
 
     h1 {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 
     
@@ -152,6 +152,7 @@
         border: 1px solid #ccc;
         border-radius: 5px;
         padding:0.5rem;
+        font-size: 0.9rem;
     }
 
     button {
@@ -164,6 +165,7 @@
         border: none;
         border-radius: 4px;
         cursor: pointer;
+        font-size: 0.9rem;
     }
    
     button:disabled {
@@ -177,7 +179,7 @@
         border:1px solid #32B0A2;
     }
 
-     input:focus.error {
+    input:focus.error {
         outline: none;
         border: 1px solid red;
     }
@@ -185,7 +187,7 @@
     .error-text {
         color: red;
         text-align: center;
-        font-size: 0.75rem;
+        font-size: 0.85rem;
     }
 
 </style>
