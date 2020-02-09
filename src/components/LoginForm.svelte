@@ -11,8 +11,10 @@
     let emailError;
     let passwordError;
     let valid = true;
-    let userEmail = 'test+1234@exmaple.net'
+    let userEmail = 'test+1234@example.net'
     let userPassword = 'Test1234!'
+
+    $: console.log(email, password)
     
         
     const emailRegex = RegExp( /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ )     // email regex test
@@ -68,7 +70,9 @@
         }
     }
     
-    const checkCredentials = (email, password) => {
+    const checkCredentials = () => {
+     
+
         if (email === userEmail && password === userPassword) {
             console.log('login successful')
         } else {
@@ -102,12 +106,12 @@
             bind:value={password} 
             placeholder="enter password" 
             type='password'>
-            
+
          {#if passwordError}
             <div>{passwordError}</div>
         {/if}
 
-        <button on:click|preventDefault={checkCredentials} disabled={valid}>Login</button>
+        <button disabled={valid}>Login</button>
 
 	
 	</form>
